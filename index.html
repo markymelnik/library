@@ -13,24 +13,35 @@
             <h1 class="header-title">Library</h1>
         </div>
         <div class="body">
+
             <div class="btn-container">
                 <button type="button" class="add-book-btn">+</button>
             </div>
-            <div class="book-form">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" required>
 
-                <label for="author">Author</label>
-                <input type="text" id="author" name="author" required>
+            <form class="book-form">
 
-                <label for="pages">Pages</label>
-                <input type="pages" id="pages" named="pages" required>
+                <div class="input-field">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="input-field">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+
+                <div class="input-field">
+                    <label for="pages">Pages</label>
+                    <input type="text" id="pages" name="pages" required>
+                </div>
 
                 <div class="bottom-btns">
-                <button type="submit" class="submit-btn">Submit</button>
-                <button type="button" class="close-form-btn">X</button>
-            </div>
-            </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="button" class="close-form-btn">X</button>
+                </div>
+
+            </form>
+            
         </div>
         <div class="footer">
             <p class="footer-text">Created by Mark Melnik</p>
