@@ -59,6 +59,7 @@ function displayBooks(newBook) {
 
     var deleteBtn = document.createElement('button');
     deleteBtn.className = "deleteBtn";
+    deleteBtn.innerHTML = "X";
 
     bookCard.appendChild(deleteBtn);
     bookCardContainer.appendChild(bookCard);
