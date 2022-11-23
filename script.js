@@ -14,10 +14,11 @@ let formBtnClicked = false;
 let myLibrary = [];
 
 class Book {
-    constructor (title, author, pages) {
+    constructor (title, author, pages, readStatus) {
         this.title = title;
         this.author = author;
         this.pages = pages;
+        this.readStatus = readStatus;
     }
 };
 
@@ -55,7 +56,7 @@ function displayBooks(newBook) {
 
     var bookCard = document.createElement('div');
     bookCard.className = "bookCard";
-    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> Pages: ${newBook.pages}`;
+    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> Pages: ${newBook.pages}<br/><br/> Read:`;
 
     var deleteBtn = document.createElement('button');
     deleteBtn.className = "deleteBtn";

@@ -1,5 +1,11 @@
+@font-face {
+    font-family: openSans;
+    src: url(fonts/OpenSans.ttf);
+}
+
 * {
     box-sizing: border-box;
+    font-family: openSans;
     margin: 0;
     padding: 0;
 }
@@ -58,12 +64,31 @@
     z-index: 1;
 }
 
+.pop-up-message {
+    position: fixed;
+    display: none;
+    font-size: 24px;
+    bottom: 100px;
+    right: 180px;
+}
+
+.add-btn-container button:hover {
+    font-size: 90px;
+}
+
+.add-btn-container:hover + .pop-up-message {
+    display: block;
+}
+
 .book-form {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     position: fixed;
     border: 1px solid black;
     background-color: #8cc5ff;
-    height: 200px;
-    width: 150px; 
+    height: 40vh;
+    width: 30vh; 
     bottom: 200px;
     right: 25px;
     padding: 20px;
@@ -71,25 +96,59 @@
     z-index: 1;
 }
 
-label, input {
+.form-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.input-field label {
     display: block;
     width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
-label {
+.input-field input {
+    display: block;
+    width: 100%;
+    height: 28px;
+    margin-bottom: 5px;
+    padding: 2px;
+    padding-left: 8px;
+}
+
+.form-middle {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.checkbox-field {
+    display: flex;
+    gap: 20px;
+}
+
+.form-bottom {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.submit-btn {
+    background-color: white;
     font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-input {
-
-}
-
-.bottom-btns {
-    display: grid;
-    grid-template-columns: 1fr 20px;
-    grid-template-rows: 20px;
-    margin: 10px;
-    gap: 10px;
+.close-form-btn {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    background-color: #ff5656;
+    font-size: 25px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .footer {
@@ -121,9 +180,12 @@ input {
 .deleteBtn {
     position: absolute;
     border: none;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
     color: white;
     background-color: #ff5656;
-    font-size: 25px;
+    font-size: 20px;
+    text-align: center;
     top: 0;
     right: 0;
     height: 32px;
