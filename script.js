@@ -49,11 +49,22 @@ function addBookToLibrary(event) {
 };
 
 function displayBooks(newBook) {
+
+    var bookCardContainer = document.createElement('div');
+    bookCardContainer.className = "bookCardContainer";
+
     var bookCard = document.createElement('div');
     bookCard.className = "bookCard";
     bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> Pages: ${newBook.pages}`;
-    var bookCardContainer = document.createElement('div');
-    bookCardContainer.className = "bookCardContainer";
+
+    var deleteBtn = document.createElement('button');
+    deleteBtn.className = "deleteBtn";
+
+    bookCard.appendChild(deleteBtn);
     bookCardContainer.appendChild(bookCard);
     bodyContainer.appendChild(bookCardContainer);
+
+    deleteBtn.addEventListener('click', () => {
+        bookCardContainer.remove();
+    })
 };

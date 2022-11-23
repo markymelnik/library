@@ -100,6 +100,7 @@ input {
 
 .bookCard {
     padding: 20px;
+    position: relative;
 }
 
 .bookCardContainer {
@@ -108,4 +109,13 @@ input {
     width: 20%;
     height: 50%;
     border: 1px solid black;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    background-color: red;
 }
