@@ -8,10 +8,11 @@ const bookForm = document.querySelector(".book-form");
 const bookFormTitle = document.querySelector("#title");
 const bookFormAuthor = document.querySelector("#author");
 const bookFormPages = document.querySelector("#pages");
+const bookCheckBox = document.querySelector("#readCheckbox")
 
-let formBtnClicked = false;
+var formBtnClicked = false;
 
-let myLibrary = [];
+var myLibrary = [];
 
 class Book {
     constructor (title, author, pages, readStatus) {
@@ -41,7 +42,8 @@ submitFormBtn.addEventListener('click', addBookToLibrary);
 
 function addBookToLibrary(event) {
     event.preventDefault();
-    const newBook = new Book(bookFormTitle.value, bookFormAuthor.value, bookFormPages.value);
+    const newBook = new Book(bookFormTitle.value, bookFormAuthor.value, bookFormPages.value, bookCheckBox.value);
+    bookCheckBox.checked ? newBook.readStatus = true : newBook.readStatus = false;
     myLibrary.push(newBook);
     displayBooks(newBook);
     bookForm.style.visibility = "hidden";
@@ -50,23 +52,30 @@ function addBookToLibrary(event) {
 };
 
 function displayBooks(newBook) {
-
     var bookCardContainer = document.createElement('div');
     bookCardContainer.className = "bookCardContainer";
 
     var bookCard = document.createElement('div');
     bookCard.className = "bookCard";
-    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> Pages: ${newBook.pages}<br/><br/> Read:`;
+    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> ${newBook.pages} Pages<br/> Read? `;
 
     var deleteBtn = document.createElement('button');
     deleteBtn.className = "deleteBtn";
     deleteBtn.innerHTML = "X";
 
+    var cardCheckbox = document.createElement('input');
+    cardCheckbox.type = "checkbox";
+    newBook.readStatus ? cardCheckbox.checked = true : cardCheckbox.check = false;
+
+    bookCard.appendChild(cardCheckbox);
     bookCard.appendChild(deleteBtn);
     bookCardContainer.appendChild(bookCard);
     bodyContainer.appendChild(bookCardContainer);
 
     deleteBtn.addEventListener('click', () => {
         bookCardContainer.remove();
+    })
+    cardCheckbox.addEventListener('change', () => {
+        cardCheckbox.checked ? newBook.readStatus = true : newBook.readStatus = false;
     })
 };
