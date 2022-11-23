@@ -7,8 +7,7 @@
 .main-container {
     display: grid;
     height: 100vh;
-    grid-template-rows: 100px auto 75px;
-    vertical-align: top;
+    grid-template-rows: 100px 1fr 75px;
 }
 
 .header {
@@ -27,18 +26,21 @@
 .body-container {
     position: relative;
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
+    align-content: flex-start;
+    min-height: auto;
 }
 
-.btn-container {
-    position: absolute;
+.add-btn-container {
+    position: fixed;
     height: 8vw;
     width: 8vw;
-    right: 20px;
-    bottom: 20px;
+    right: 40px;
+    bottom: 40px;
 }
 
-.btn-container button {
+.add-btn-container button {
     border: none;
     border-radius: 50%;
     border: 1px solid black;
@@ -51,17 +53,19 @@
     vertical-align: middle;
     line-height: 8vw;
     cursor: pointer;
+    z-index: 1;
 }
 
 .book-form {
-    height: 16vw;
-    width: 12vw;
+    height: 200px;
+    width: 150px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 10px;
+    right: 10px;
     padding: 20px;
     background: lightsteelblue;
     visibility: hidden;
+    z-index: 1;
 }
 
 label, input {
@@ -99,16 +103,16 @@ input {
 }
 
 .bookCard {
-    padding: 20px;
     position: relative;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid black;
 }
 
 .bookCardContainer {
-    display: grid;
-    margin: 20px;
+    padding: 20px;
     width: 20%;
-    height: 50%;
-    border: 1px solid black;
+    height: 250px;
 }
 
 .deleteBtn {
