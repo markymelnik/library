@@ -57,7 +57,7 @@ function displayBooks(newBook) {
 
     var bookCard = document.createElement('div');
     bookCard.className = "bookCard";
-    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> ${newBook.pages} Pages<br/> Read? `;
+    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> ${newBook.pages} Pages<br/><br/> Read  `;
 
     var deleteBtn = document.createElement('button');
     deleteBtn.className = "deleteBtn";
