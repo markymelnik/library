@@ -1,5 +1,6 @@
 // Library
 
+const bodyContainer = document.querySelector(".body-container");
 const addBookBtn = document.querySelector(".add-book-btn");
 const closeFormBtn = document.querySelector(".close-form-btn");
 const submitFormBtn = document.querySelector(".submit-btn");
@@ -7,8 +8,6 @@ const bookForm = document.querySelector(".book-form");
 const bookFormTitle = document.querySelector("#title");
 const bookFormAuthor = document.querySelector("#author");
 const bookFormPages = document.querySelector("#pages");
-
-const bodyContainer = document.querySelector(".body-container");
 
 let formBtnClicked = false;
 
@@ -51,10 +50,10 @@ function addBookToLibrary(event) {
 
 function displayBooks(newBook) {
     var bookCard = document.createElement('div');
-    bookCard.style.display = "grid";
-    bookCard.style.width = "20%";
-    bookCard.style.height = "50%";
-    bookCard.style.border = "1px solid black";
-    bookCard.innerHTML = JSON.stringify(newBook);
-    bodyContainer.appendChild(bookCard);
+    bookCard.className = "bookCard";
+    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> Pages: ${newBook.pages}`;
+    var bookCardContainer = document.createElement('div');
+    bookCardContainer.className = "bookCardContainer";
+    bookCardContainer.appendChild(bookCard);
+    bodyContainer.appendChild(bookCardContainer);
 };

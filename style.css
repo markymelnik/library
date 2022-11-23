@@ -97,3 +97,15 @@ input {
     font-size: 20px;
     margin: 20px;   
 }
+
+.bookCard {
+    padding: 20px;
+}
+
+.bookCardContainer {
+    display: grid;
+    margin: 20px;
+    width: 20%;
+    height: 50%;
+    border: 1px solid black;
+}
