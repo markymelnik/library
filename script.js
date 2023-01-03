@@ -1,8 +1,5 @@
 // Library
 
-let myLibrary = [];
-
-
 class Book {
 	constructor (title, author, pages, readStatus) {
 		this.title = title;
@@ -43,6 +40,7 @@ const bookFormController = (() => {
 
 		closeFormBtn.addEventListener('click', () => {
 			bookForm.style.visibility = "hidden";
+			bookForm.reset();
 			formBtnClicked = false;
 		})
 
@@ -60,8 +58,8 @@ const bookFormController = (() => {
 				newBook.readStatus = true;
 			} else newBook.readStatus = false;
 
-			bookManager.addBookToLibrary(newBook);
-			bookManager.addBookToDisplay(newBook);
+			libraryManager.addBookToLibrary(newBook);
+			libraryManager.addBookToDisplay(newBook);
 
 			bookForm.style.visibility = "hidden";
     	bookForm.reset();
@@ -79,11 +77,13 @@ const bookFormController = (() => {
 
 })();
 
-const bookManager = (() => {
+const libraryManager = (() => {
+
+	let myLibrary = [];
 
 	const addBookToLibrary = (newBook) => {
 
-		myLibrary.push(newBook);
+		libraryManager.myLibrary.push(newBook);
 
 	}
 
@@ -102,17 +102,19 @@ const bookManager = (() => {
     deleteBtn.className = "deleteBtn";
     deleteBtn.innerHTML = "X";
 
+		deleteBtn.addEventListener('click', () => {
+			
+			removeBookFromLibrary(newBook);
+			removeBookFromDisplay(bookCardContainer);
+	
+		})	
+
     const cardCheckbox = document.createElement('input');
 
-    cardCheckbox.type = "checkbox";
+		cardCheckbox.type = "checkbox";
     if (newBook.readStatus) { 
       cardCheckbox.checked = true
     } else cardCheckbox.check = false;
-
-    bookCard.append(cardCheckbox);
-    bookCard.append(deleteBtn);
-    bookCardContainer.append(bookCard);
-    bodyContainer.append(bookCardContainer);
 
 		cardCheckbox.addEventListener('change', () => {
 			if (cardCheckbox.checked) { 
@@ -120,17 +122,16 @@ const bookManager = (() => {
 			} else newBook.readStatus = false;
 		})
 
-    deleteBtn.addEventListener('click', () => {
-
-			removeBookFromLibrary(newBook);
-			removeBookFromDisplay(bookCardContainer);
-			
-		})	
+    bookCard.append(cardCheckbox);
+    bookCard.append(deleteBtn);
+    bookCardContainer.append(bookCard);
+    bodyContainer.append(bookCardContainer);
 
   }
 
 	const removeBookFromLibrary = (newBook) => {
-		myLibrary = myLibrary.filter(book => book !== newBook);
+		libraryManager.myLibrary = libraryManager.myLibrary.filter(book => book !== newBook);
+		
 	}
 
 	const removeBookFromDisplay = (bookCardContainer) => {
@@ -141,7 +142,8 @@ const bookManager = (() => {
 		addBookToLibrary,
 		addBookToDisplay,
 		removeBookFromLibrary,
-		removeBookFromDisplay
+		removeBookFromDisplay,
+		myLibrary
 	}
 
 })();
