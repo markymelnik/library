@@ -13,7 +13,7 @@
 .main-container {
     display: grid;
     height: 100vh;
-    grid-template-rows: 100px 1fr 75px;
+    grid-template-rows: 150px 1fr 75px;
 }
 
 .header {
@@ -27,7 +27,7 @@
 
 .header-title {
     text-align: center;
-    font-size: 50px;
+    font-size: 55px;
     margin: 20px;
 }
 

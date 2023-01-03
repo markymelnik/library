@@ -10,9 +10,9 @@ const bookFormAuthor = document.querySelector("#author");
 const bookFormPages = document.querySelector("#pages");
 const bookCheckBox = document.querySelector("#readCheckbox")
 
-var formBtnClicked = false;
+const myLibrary = [];
 
-var myLibrary = [];
+let formBtnClicked = false;
 
 class Book {
     constructor (title, author, pages, readStatus) {
@@ -41,9 +41,12 @@ closeFormBtn.addEventListener('click', () => {
 submitFormBtn.addEventListener('click', addBookToLibrary);
 
 function addBookToLibrary(event) {
+
     event.preventDefault();
     const newBook = new Book(bookFormTitle.value, bookFormAuthor.value, bookFormPages.value, bookCheckBox.value);
-    bookCheckBox.checked ? newBook.readStatus = true : newBook.readStatus = false;
+    if (bookCheckBox.checked) {
+        newBook.readStatus = true;
+    } else newBook.readStatus = false;
     myLibrary.push(newBook);
     displayBooks(newBook);
     bookForm.style.visibility = "hidden";
@@ -65,17 +68,22 @@ function displayBooks(newBook) {
 
     var cardCheckbox = document.createElement('input');
     cardCheckbox.type = "checkbox";
-    newBook.readStatus ? cardCheckbox.checked = true : cardCheckbox.check = false;
+    if (newBook.readStatus) { 
+        cardCheckbox.checked = true
+    } else cardCheckbox.check = false;
 
-    bookCard.appendChild(cardCheckbox);
-    bookCard.appendChild(deleteBtn);
-    bookCardContainer.appendChild(bookCard);
-    bodyContainer.appendChild(bookCardContainer);
+    bookCard.append(cardCheckbox);
+    bookCard.append(deleteBtn);
+    bookCardContainer.append(bookCard);
+    bodyContainer.append(bookCardContainer);
 
     deleteBtn.addEventListener('click', () => {
         bookCardContainer.remove();
     })
+    
     cardCheckbox.addEventListener('change', () => {
-        cardCheckbox.checked ? newBook.readStatus = true : newBook.readStatus = false;
+        if (cardCheckbox.checked) { 
+            newBook.readStatus = true;
+         } else newBook.readStatus = false;
     })
 };
