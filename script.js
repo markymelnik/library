@@ -20,7 +20,6 @@ const bookFormController = (() => {
 	let formBtnClicked = false;
 
 	const initiateBookForm = () => {
-
 		const addBookBtn = document.querySelector(".add-book-btn");
     addBookBtn.addEventListener('click', () => {
     	if (formBtnClicked) {
@@ -31,13 +30,10 @@ const bookFormController = (() => {
       	formBtnClicked = true;
       }
   	})
-
   }
 
 	const closeBookForm = () => {
-
 		const closeFormBtn = document.querySelector(".close-form-btn");
-
 		closeFormBtn.addEventListener('click', () => {
 			bookForm.style.visibility = "hidden";
 			bookForm.reset();
@@ -47,11 +43,9 @@ const bookFormController = (() => {
 	}
 
 	const submitBookForm = () => {
-
-		const submitFormBtn = document.querySelector(".submit-btn");
-
-		submitFormBtn.addEventListener('click', () => {
 		
+		bookForm.addEventListener('submit', (event) => {
+
 			const newBook = new Book(bookFormTitle.value, bookFormAuthor.value, bookFormPages.value, bookCheckBox.value);
 
 			if (bookCheckBox.checked) {
@@ -61,12 +55,11 @@ const bookFormController = (() => {
 			libraryManager.addBookToLibrary(newBook);
 			libraryManager.addBookToDisplay(newBook);
 
+			event.preventDefault();
 			bookForm.style.visibility = "hidden";
     	bookForm.reset();
     	formBtnClicked = false;
-
 		});
-
 	}
 
 	return {
@@ -82,56 +75,45 @@ const libraryManager = (() => {
 	let myLibrary = [];
 
 	const addBookToLibrary = (newBook) => {
-
 		libraryManager.myLibrary.push(newBook);
-
 	}
 
 	const addBookToDisplay = (newBook) => {
-
 		const bodyContainer = document.querySelector(".body-container");
-
 		const bookCardContainer = document.createElement('div');
     bookCardContainer.className = "bookCardContainer";
-
+	
     const bookCard = document.createElement('div');
     bookCard.className = "bookCard";
     bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/>Pages: ${newBook.pages} <br/><br/>`;
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = "deleteBtn";
-    deleteBtn.innerHTML = "X";
-
-		deleteBtn.addEventListener('click', () => {
-			
-			removeBookFromLibrary(newBook);
-			removeBookFromDisplay(bookCardContainer);
-	
-		})	
-
-    const cardCheckbox = document.createElement('input');
-
+		const cardCheckbox = document.createElement('input');
 		cardCheckbox.type = "checkbox";
     if (newBook.readStatus) { 
       cardCheckbox.checked = true
     } else cardCheckbox.check = false;
-
 		cardCheckbox.addEventListener('change', () => {
 			if (cardCheckbox.checked) { 
 				newBook.readStatus = true;
 			} else newBook.readStatus = false;
 		})
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = "deleteBtn";
+    deleteBtn.innerHTML = "X";
+		deleteBtn.addEventListener('click', () => {
+			removeBookFromLibrary(newBook);
+			removeBookFromDisplay(bookCardContainer);
+		})	
+
+		bookCard.append(deleteBtn);
     bookCard.append(cardCheckbox);
-    bookCard.append(deleteBtn);
     bookCardContainer.append(bookCard);
     bodyContainer.append(bookCardContainer);
-
   }
 
 	const removeBookFromLibrary = (newBook) => {
 		libraryManager.myLibrary = libraryManager.myLibrary.filter(book => book !== newBook);
-		
 	}
 
 	const removeBookFromDisplay = (bookCardContainer) => {
@@ -149,9 +131,7 @@ const libraryManager = (() => {
 })();
 
 const appController = (() => {
-
 	bookFormController.initiateBookForm();
 	bookFormController.closeBookForm();
 	bookFormController.submitBookForm();
-
 })();

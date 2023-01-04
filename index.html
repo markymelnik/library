@@ -8,49 +8,56 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="header">
-            <h1 class="header-title">Reading Collection</h1>
-        </div>
-        <div class="body-container">
-            <div class="add-btn-container">
-                <button type="button" class="add-book-btn">+</button>
-            </div>
-            <div class="pop-up-message">
-                <div class="form-message">Add a book!</div>
-            </div>
-            <form class="book-form">
-                <h2>Enter your book!</h2>
-                <div class="form-top">
-                    <div class="input-field">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" required>
-                    </div>
-                    <div class="input-field">
-                        <label for="author">Author</label>
-                        <input type="text" id="author" name="author" required>
-                    </div>
-                    <div class="input-field">
-                        <label for="pages">Pages</label>
-                        <input type="text" id="pages" name="pages" required>
-                    </div>
-                </div>
-                <div class="form-middle">
-                    <div class="checkbox-field">
-                        <label for="readCheckbox" class="readCheckBox">Read?</label>
-                        <input type="checkbox" id="readCheckbox" name="checkbox" required>          
-                    </div>
-                </div>
-                <div class="form-bottom">
-                    <button type="button" class="submit-btn">Submit</button>
-                    <button type="button" class="close-form-btn">X</button>
-                </div>
-            </form>
-        </div>
-        <div class="footer">
-            <p class="footer-text">Created by Mark Melnik</p>
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+	<div class="main-container">
+
+		<div class="header">
+			<h1 class="header-title">Reading Collection</h1>
+		</div>
+
+		<div class="body-container">
+			<div class="add-btn-container">
+				<button type="button" class="add-book-btn">+</button>
+			</div>
+
+			<div class="pop-up-message">
+				<div class="form-message">Add a book!</div>
+			</div>
+
+			<form name="bookform" class="book-form">
+				<h2>Enter your book!</h2>
+				<div class="form-top">
+					<div class="input-field">
+						<label for="title">Title<span aria-label="required">*</span></label>
+						<input type="text" id="title" name="title" required/>
+					</div>
+					<div class="input-field">
+						<label for="author">Author<span aria-label="required">*</span></label>
+						<input type="text" id="author" name="author" required/>
+					</div>
+					<div class="input-field">
+						<label for="pages">Pages<span aria-label="required">*</span></label>
+						<input type="number" id="pages" name="pages" min='1' max='10000' required/>
+					</div>
+				</div>
+				<div class="form-middle">
+					<div class="checkbox-field">
+						<label for="readCheckbox" class="readCheckBox">Read?</label>
+						<input type="checkbox" id="readCheckbox" name="checkbox" />          
+					</div>
+				</div>
+				<div class="form-bottom">
+					<button type="submit" class="submit-btn">Submit</button>
+					<button type="button" class="close-form-btn">X</button>
+				</div>
+			</form>
+
+		</div>
+
+		<div class="footer">
+			<p class="footer-text">Created by Mark Melnik</p>
+		</div>
+	</div>
+	<script src="script.js"></script>
 </body>
 </html>
