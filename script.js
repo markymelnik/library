@@ -11,22 +11,22 @@ class Book {
 
 const bookFormController = (() => {
 
-	const bookForm = document.querySelector(".book-form");
-	const bookFormTitle = document.querySelector("#title");
-	const bookFormAuthor = document.querySelector("#author");
-	const bookFormPages = document.querySelector("#pages");
-	const bookCheckBox = document.querySelector("#readCheckbox");
+	const bookForm = document.querySelector('.book-form');
+	const bookFormTitle = document.querySelector('#title');
+	const bookFormAuthor = document.querySelector('#author');
+	const bookFormPages = document.querySelector('#pages');
+	const bookCheckBox = document.querySelector('#readCheckbox');
 
 	let formBtnClicked = false;
 
 	const initiateBookForm = () => {
-		const addBookBtn = document.querySelector(".add-book-btn");
+		const addBookBtn = document.querySelector('.add-book-btn');
     addBookBtn.addEventListener('click', () => {
     	if (formBtnClicked) {
-      	bookForm.style.visibility = "hidden";
+      	bookForm.style.visibility = 'hidden';
         formBtnClicked = false;
       } else {
-        bookForm.style.visibility = "visible";
+        bookForm.style.visibility = 'visible';
       	formBtnClicked = true;
       }
   	})
@@ -35,7 +35,7 @@ const bookFormController = (() => {
 	const closeBookForm = () => {
 		const closeFormBtn = document.querySelector(".close-form-btn");
 		closeFormBtn.addEventListener('click', () => {
-			bookForm.style.visibility = "hidden";
+			bookForm.style.visibility = 'hidden';
 			bookForm.reset();
 			formBtnClicked = false;
 		})
@@ -56,7 +56,7 @@ const bookFormController = (() => {
 			libraryManager.addBookToDisplay(newBook);
 
 			event.preventDefault();
-			bookForm.style.visibility = "hidden";
+			bookForm.style.visibility = 'hidden';
     	bookForm.reset();
     	formBtnClicked = false;
 		});
@@ -79,16 +79,17 @@ const libraryManager = (() => {
 	}
 
 	const addBookToDisplay = (newBook) => {
-		const bodyContainer = document.querySelector(".body-container");
+		
+		const bodyContainer = document.querySelector('.body-container');
 		const bookCardContainer = document.createElement('div');
-    bookCardContainer.className = "bookCardContainer";
+    bookCardContainer.classList.add('book-card-container');
 	
     const bookCard = document.createElement('div');
-    bookCard.className = "bookCard";
-    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/>Pages: ${newBook.pages} <br/><br/>`;
+    bookCard.classList.add('book-card');
+    bookCard.innerHTML = `Title: ${newBook.title}<br/> Author: ${newBook.author}<br/> Pages: ${newBook.pages}<br/> <br/> Read? `;
 
 		const cardCheckbox = document.createElement('input');
-		cardCheckbox.type = "checkbox";
+		cardCheckbox.type = 'checkbox';
     if (newBook.readStatus) { 
       cardCheckbox.checked = true
     } else cardCheckbox.check = false;
@@ -99,8 +100,8 @@ const libraryManager = (() => {
 		})
 
     const deleteBtn = document.createElement('button');
-    deleteBtn.className = "deleteBtn";
-    deleteBtn.innerHTML = "X";
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.innerHTML = 'X';
 		deleteBtn.addEventListener('click', () => {
 			removeBookFromLibrary(newBook);
 			removeBookFromDisplay(bookCardContainer);
